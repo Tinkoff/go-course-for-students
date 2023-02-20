@@ -30,3 +30,9 @@ jobs:
         run: |
           go get github.com/stretchr/testify/assert
           go test -v ./...
+
+      - name: LintLesson1
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: latest
+          working-directory: ./lesson1/homework
