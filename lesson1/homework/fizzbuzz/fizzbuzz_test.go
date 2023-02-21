@@ -1,9 +1,10 @@
 package fizzbuzz_test
 
 import (
-	"github.com/stretchr/testify/assert"
 	"lecture01_homework/fizzbuzz"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestFizzBuzz(t *testing.T) {
