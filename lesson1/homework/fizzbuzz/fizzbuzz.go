@@ -1,20 +1,15 @@
 package fizzbuzz
 
-import "fmt"
+import "strconv"
 
 func FizzBuzz(i int) string {
-	s := ""
-	for j := 1; j <= i; j++ {
-		if j%15 == 0 {
-			s += "FizzBuzz"
-		} else if j%3 == 0 {
-			s += "Fizz"
-		} else if j%5 == 0 {
-			s += "Buzz"
-		} else {
-			s = fmt.Sprint(s, j)
-		}
-		s += " "
+	if i%3 == 0 && i%5 == 0 {
+		return "FizzBuzz"
+	} else if i%3 == 0 {
+		return "Fizz"
+	} else if i%5 == 0 {
+		return "Buzz"
+	} else {
+		return strconv.Itoa(i)
 	}
-	return s
 }
