@@ -1,6 +1,9 @@
 package fizzbuzz
 
-import "strconv"
+import (
+	"strconv"
+	"strings"
+)
 
 func helpF(d int, s string, i int) string {
 	if i%d == 0 {
@@ -10,9 +13,11 @@ func helpF(d int, s string, i int) string {
 }
 
 func FizzBuzz(i int) string {
-	result := helpF(3, "Fizz", i) + helpF(5, "Buzz", i)
-	if result == "" {
+	result := strings.Builder{}
+	result.WriteString(helpF(3, "Fizz", i))
+	result.WriteString(helpF(5, "Buzz", i))
+	if result.Len() == 0 {
 		return strconv.Itoa(i)
 	}
-	return result
+	return result.String()
 }
