@@ -26,4 +26,19 @@ func TestFizzBuzz(t *testing.T) {
 
 	res = fizzbuzz.FizzBuzz(31)
 	assert.Equal(t, res, "31")
+
+	res = fizzbuzz.FizzBuzz(15)
+	assert.Equal(t, res, "FizzBuzz")
+
+	res = fizzbuzz.FizzBuzz(6)
+	assert.Equal(t, res, "Fizz")
+
+	res = fizzbuzz.FizzBuzz(90)
+	assert.Equal(t, res, "FizzBuzz")
+
+	res = fizzbuzz.FizzBuzz(35)
+	assert.Equal(t, res, "Buzz")
+
+	res = fizzbuzz.FizzBuzz(13)
+	assert.Equal(t, res, "13")
 }
