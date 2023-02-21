@@ -1,9 +1,10 @@
 package fizzbuzz_test
 
 import (
-	"github.com/stretchr/testify/assert"
 	"lecture01_homework/fizzbuzz"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestFizzBuzz(t *testing.T) {
@@ -26,4 +27,40 @@ func TestFizzBuzz(t *testing.T) {
 
 	res = fizzbuzz.FizzBuzz(31)
 	assert.Equal(t, res, "31")
+}
+
+func TestFizzBuzz2(t *testing.T) {
+	testCases := []struct {
+		name        string
+		number      int
+		expectedAns string
+	}{
+		{
+			name:        "simple number",
+			number:      4,
+			expectedAns: "4",
+		},
+		{
+			name:        "Fizz",
+			number:      27,
+			expectedAns: "Fizz",
+		},
+		{
+			name:        "Buzz",
+			number:      25,
+			expectedAns: "Buzz",
+		},
+		{
+			name:        "FizzBuzz",
+			number:      45,
+			expectedAns: "FizzBuzz",
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			res := fizzbuzz.FizzBuzz(tc.number)
+			assert.Equal(t, tc.expectedAns, res)
+		})
+	}
 }
