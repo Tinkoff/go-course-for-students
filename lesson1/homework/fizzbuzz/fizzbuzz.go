@@ -3,7 +3,7 @@ package fizzbuzz
 import "strconv"
 
 func FizzBuzz(i int) string {
-	var result string
+	result := strconv.Itoa(i)
 
 	if i%15 == 0 {
 		result = "FizzBuzz"
@@ -11,8 +11,6 @@ func FizzBuzz(i int) string {
 		result = "Buzz"
 	} else if i%3 == 0 {
 		result = "Fizz"
-	} else {
-		result = strconv.Itoa(i)
 	}
 
 	return result
