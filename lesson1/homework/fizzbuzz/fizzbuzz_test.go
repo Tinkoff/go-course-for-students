@@ -3,6 +3,7 @@ package fizzbuzz_test
 import (
 	"github.com/stretchr/testify/assert"
 	"lecture01_homework/fizzbuzz"
+	"strconv"
 	"testing"
 )
 
@@ -26,4 +27,20 @@ func TestFizzBuzz(t *testing.T) {
 
 	res = fizzbuzz.FizzBuzz(31)
 	assert.Equal(t, res, "31")
+}
+
+func TestFizzBuzzLoop(t *testing.T) {
+	var res string
+	for i := 1; i < 101; i++ {
+		res = fizzbuzz.FizzBuzz(i)
+		if i%15 == 0 {
+			assert.Equal(t, res, "FizzBuzz")
+		} else if i%3 == 0 {
+			assert.Equal(t, res, "Fizz")
+		} else if i%5 == 0 {
+			assert.Equal(t, res, "Buzz")
+		} else {
+			assert.Equal(t, res, strconv.Itoa(i))
+		}
+	}
 }
