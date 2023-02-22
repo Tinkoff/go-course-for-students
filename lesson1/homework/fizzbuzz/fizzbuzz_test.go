@@ -9,6 +9,10 @@ import (
 func TestFizzBuzz(t *testing.T) {
 	var res string
 
+	// Мой
+	res = fizzbuzz.FizzBuzz(0)
+	assert.Equal(t, res, "FizzBuzz")
+
 	res = fizzbuzz.FizzBuzz(9)
 	assert.Equal(t, res, "Fizz")
 
