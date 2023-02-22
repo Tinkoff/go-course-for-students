@@ -5,9 +5,11 @@ import (
 	"strings"
 )
 
-func helpF(d int, s string, i int) string {
-	if i%d == 0 {
-		return s
+// Returns resultIfDividable if number is dividable by divider
+// Empty string otherwise
+func helpF(divider int, resultIfDividable string, number int) string {
+	if number%divider == 0 {
+		return resultIfDividable
 	}
 	return ""
 }
