@@ -5,7 +5,11 @@ import (
 	"lecture01_homework/fizzbuzz"
 )
 
+const LEFT = 1
+const RIGHT = 100
+
 func main() {
-	// TODO тут напишите цикл с вызовом FizzBuzz
-	// fmt.Println(fizzbuzz.FizzBuzz(10))
+	for i := LEFT; i <= RIGHT; i++ {
+		fmt.Println(fizzbuzz.FizzBuzz(i))
+	}
 }
