@@ -3,7 +3,6 @@ package fizzbuzz
 import "strconv"
 
 func FizzBuzz(i int) string {
-	// TODO
 	var ret string
 	switch {
 	case i%15 == 0:
