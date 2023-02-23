@@ -2,7 +2,7 @@ package fizzbuzz
 
 import (
 	"strconv"
-  )
+)
 
 func FizzBuzz(i int) string {
 	var result string = ""
