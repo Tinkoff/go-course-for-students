@@ -3,15 +3,14 @@ package fizzbuzz
 import "strconv"
 
 func FizzBuzz(i int) string {
-	var answer string = ""
+	if i%15 == 0 {
+		return "FizzBuzz"
+	}
 	if i%3 == 0 {
-		answer += "Fizz"
+		return "Fizz"
 	}
 	if i%5 == 0 {
-		answer += "Buzz"
+		return "Buzz"
 	}
-	if answer == "" {
-		return strconv.Itoa(i)
-	}
-	return answer
+	return strconv.Itoa(i)
 }
