@@ -4,17 +4,16 @@ import "strconv"
 
 func FizzBuzz(i int) string {
 	// TODO
-	if i%15 == 0 {
-		return "FizzBuzz"
+	ans := ""
+	if i%5 != 0 && i%3 != 0 {
+		ans = strconv.Itoa(i)
 	} else {
+		if i%3 == 0 {
+			ans += "Fizz"
+		}
 		if i%5 == 0 {
-			return "Buzz"
-		} else {
-			if i%3 == 0 {
-				return "Fizz"
-			} else {
-				return strconv.Itoa(i)
-			}
+			ans += "Buzz"
 		}
 	}
+	return ans
 }
