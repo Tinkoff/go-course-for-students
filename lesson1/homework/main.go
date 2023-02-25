@@ -1,6 +1,9 @@
 package main
 
-import "lecture01_homework/fizzbuzz"
+import (
+	"fmt"
+	"lecture01_homework/fizzbuzz"
+)
 
 func main() {
 	const (
@@ -9,6 +12,6 @@ func main() {
 	)
 
 	for i := iterateFrom; i <= iterateTo; i++ {
-		println(fizzbuzz.FizzBuzz(i))
+		fmt.Println(fizzbuzz.FizzBuzz(i))
 	}
 }
