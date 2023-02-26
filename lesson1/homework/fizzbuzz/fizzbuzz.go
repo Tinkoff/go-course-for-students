@@ -2,7 +2,6 @@ package fizzbuzz
 
 import (
     "strconv"
-    "fmt"
 )
 
 func FizzBuzz(i int) string {
