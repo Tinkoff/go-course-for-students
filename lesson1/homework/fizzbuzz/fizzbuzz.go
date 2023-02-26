@@ -18,8 +18,3 @@ func FizzBuzz(i int) string {
 	return strconv.Itoa(i)
 }
 
-func main() {
-    for i := 1; i <= 100; i++ {
-        fmt.Printf("%v ", FizzBuzz(i));
-    }
-}
