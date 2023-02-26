@@ -7,6 +7,6 @@ import (
 
 func main() {
     for i := 1; i <= 100; i++ {
-        fmt.Printf("%v ", FizzBuzz(i));
+        fmt.Printf("%v ", fizzbuzz.FizzBuzz(i));
     }
 }
