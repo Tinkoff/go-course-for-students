@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
-	// TODO тут напишите цикл с вызовом FizzBuzz
-	// fmt.Println(fizzbuzz.FizzBuzz(10))
+	for value := 1; value <= 100; value++ {
+		fmt.Println(fizzbuzz.FizzBuzz(value))
+	}
 }

@@ -1,6 +1,6 @@
 package fizzbuzz
 
-import "fmt"
+import "strconv"
 
 func FizzBuzz(i int) string {
 
@@ -16,12 +16,6 @@ func FizzBuzz(i int) string {
 	if result != "" {
 		return result
 	} else {
-		return string(i)
-	}
-}
-
-func main() {
-	for value := 0; value <= 100; value++ {
-		fmt.Println(FizzBuzz(value))
+		return strconv.Itoa(i)
 	}
 }
