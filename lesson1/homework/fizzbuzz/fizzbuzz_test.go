@@ -7,23 +7,15 @@ import (
 )
 
 func TestFizzBuzz(t *testing.T) {
-	var res string
+	test := func(input int, actual string) {
+		res := fizzbuzz.FizzBuzz(input)
+		assert.Equal(t, res, actual)
+	}
 
-	res = fizzbuzz.FizzBuzz(9)
-	assert.Equal(t, res, "Fizz")
-
-	res = fizzbuzz.FizzBuzz(25)
-	assert.Equal(t, res, "Buzz")
-
-	res = fizzbuzz.FizzBuzz(30)
-	assert.Equal(t, res, "FizzBuzz")
-
-	res = fizzbuzz.FizzBuzz(11)
-	assert.Equal(t, res, "11")
-
-	res = fizzbuzz.FizzBuzz(26)
-	assert.Equal(t, res, "26")
-
-	res = fizzbuzz.FizzBuzz(31)
-	assert.Equal(t, res, "31")
+	test(9, "Fizz")
+	test(25, "Buzz")
+	test(30, "FizzBuzz")
+	test(11, "11")
+	test(26, "26")
+	test(31, "31")
 }
