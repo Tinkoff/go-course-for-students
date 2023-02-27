@@ -15,7 +15,6 @@ func FizzBuzz(i int) string {
 
 	if result != "" {
 		return result
-	} else {
-		return strconv.Itoa(i)
 	}
+	return strconv.Itoa(i)
 }
