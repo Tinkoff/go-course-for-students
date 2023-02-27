@@ -9,7 +9,7 @@ func FizzBuzz(i int) string {
 		return "Fizz"
 	} else if i%5 == 0 {
 		return "Buzz"
-	} else {
-		return strconv.Itoa(i)
 	}
+
+	return strconv.Itoa(i)
 }
