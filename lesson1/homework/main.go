@@ -2,10 +2,19 @@ package main
 
 import (
 	"fmt"
-	"lecture01_homework/fizzbuzz"
 )
 
 func main() {
-	// TODO тут напишите цикл с вызовом FizzBuzz
-	// fmt.Println(fizzbuzz.FizzBuzz(10))
+	for i := 1; i <= 100; i++ {
+		if i%3 == 0 {
+			fmt.Print("Fizz")
+		}
+		if i%5 == 0 {
+			fmt.Print("Buzz")
+		}
+		if i%3 != 0 && i%5 != 0 {
+			fmt.Print(i)
+		}
+		fmt.Print(" ")
+	}
 }
