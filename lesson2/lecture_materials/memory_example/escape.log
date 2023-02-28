@@ -1,0 +1,153 @@
+# memory_example
+.\main.go:9:6: cannot inline main: function too complex: cost 91 exceeds budget 80
+.\main.go:13:13: inlining call to fmt.Println
+.\main.go:13:13: Before inlining:
+.   CALLFUNC IsDDD STRUCT-(int, error) tc(1) # main.go:13:13
+.   .   NAME-fmt.Println Class:PFUNC Offset:0 FUNC-func(...any) (int, error) tc(1) # print.go:293:6
+.   CALLFUNC-Args
+.   .   SLICELIT Len:2 Implicit SLICE-[]any tc(1) # main.go:13:13
+.   .   SLICELIT-List
+.   .   .   CONVIFACE Implicit any tc(1) # main.go:13:13
+.   .   .   .   NAME-main.i Class:PAUTO Offset:0 OnStack int tc(1) # main.go:10:2
+.   .   .   CONVIFACE Implicit any tc(1) # main.go:13:13
+.   .   .   .   NAME-main.s Class:PAUTO Offset:0 OnStack PTR-*Struct tc(1) # main.go:11:2
+typecheck import [fmt.Println] fmt.Println (type func(...any) (int, error)) { fmt..autotmp_0, fmt..autotmp_1 = fmt.Fprintln(io.Writer(os.Stdout), fmt.a...); return fmt..autotmp_0, fmt.
+.autotmp_1 }
+substituting name
+.   NAME-fmt..autotmp_0 Class:PAUTO Offset:0 OnStack int tc(1) # print.go:294:17  ->
+.   NAME-fmt..autotmp_0 Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:294:17
+substituting name
+.   NAME-fmt..autotmp_0 Class:PAUTO Offset:0 OnStack int tc(1) # print.go:294:17  ->
+.   NAME-fmt..autotmp_0 Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:294:17
+substituting name
+.   NAME-fmt..autotmp_1 Class:PAUTO Offset:0 OnStack error tc(1) # print.go:294:17  ->
+.   NAME-fmt..autotmp_1 Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:294:17
+substituting name
+.   NAME-fmt..autotmp_1 Class:PAUTO Offset:0 OnStack error tc(1) # print.go:294:17  ->
+.   NAME-fmt..autotmp_1 Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:294:17
+substituting name
+.   NAME-fmt..autotmp_0 Class:PAUTO Offset:0 OnStack int tc(1) # print.go:294:17  ->
+.   NAME-fmt..autotmp_0 Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:294:17
+substituting name
+.   NAME-fmt..autotmp_1 Class:PAUTO Offset:0 OnStack error tc(1) # print.go:294:17  ->
+.   NAME-fmt..autotmp_1 Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:294:17
+not substituting name
+.   NAME-fmt.Fprintln Class:PFUNC Offset:0 FUNC-func(io.Writer, ...any) (int, error) tc(1) # print.go:282:6
+not substituting name
+.   NAME-os.Stdout Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:67:2
+substituting name
+.   NAME-fmt.a Class:PPARAM Offset:0 OnStack SLICE-[]any tc(1) # print.go:293:14  ->
+.   NAME-fmt.a Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:293:14
+substituting name
+.   NAME-fmt..autotmp_0 Class:PAUTO Offset:0 OnStack int tc(1) # print.go:294:17  ->
+.   NAME-fmt..autotmp_0 Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:294:17
+substituting name
+.   NAME-fmt..autotmp_1 Class:PAUTO Offset:0 OnStack error tc(1) # print.go:294:17  ->
+.   NAME-fmt..autotmp_1 Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:294:17
+.\main.go:13:13: After inlining
+.   INLCALL-init
+.   .   AS2-init
+.   .   .   DCL # main.go:13:13
+.   .   .   .   NAME-fmt.a Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:293:14,main.go:13:13
+.   .   AS2 Def tc(1) # main.go:13:13
+.   .   AS2-Lhs
+.   .   .   NAME-fmt.a Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:293:14,main.go:13:13
+.   .   AS2-Rhs
+.   .   .   SLICELIT Len:2 Implicit SLICE-[]any tc(1) # main.go:13:13
+.   .   .   SLICELIT-List
+.   .   .   .   CONVIFACE Implicit any tc(1) # main.go:13:13
+.   .   .   .   .   NAME-main.i Class:PAUTO Offset:0 OnStack int tc(1) # main.go:10:2
+.   .   .   .   CONVIFACE Implicit any tc(1) # main.go:13:13
+.   .   .   .   .   NAME-main.s Class:PAUTO Offset:0 OnStack PTR-*Struct tc(1) # main.go:11:2
+.   .   DCL # main.go:13:13
+.   .   .   NAME-fmt.n Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:293:25,main.go:13:13
+.   .   AS tc(1) # main.go:13:13
+.   .   .   NAME-fmt.n Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:293:25,main.go:13:13
+.   .   DCL # main.go:13:13
+.   .   .   NAME-fmt.err Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:293:32,main.go:13:13
+.   .   AS tc(1) # main.go:13:13
+.   .   .   NAME-fmt.err Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:293:32,main.go:13:13
+.   .   INLMARK # +main.go:13:13
+.   INLCALL STRUCT-(int, error) tc(1) # main.go:13:13
+.   INLCALL-Body
+.   .   AS2FUNC-init
+.   .   .   DCL tc(1) # print.go:294:17,main.go:13:13
+.   .   .   .   NAME-fmt..autotmp_0 Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:294:17,main.go:13:13
+.   .   .   AS tc(1) # print.go:294:17,main.go:13:13
+.   .   .   .   NAME-fmt..autotmp_0 Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:294:17,main.go:13:13
+.   .   .   DCL tc(1) # print.go:294:17,main.go:13:13
+.   .   .   .   NAME-fmt..autotmp_1 Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:294:17,main.go:13:13
+.   .   .   AS tc(1) # print.go:294:17,main.go:13:13
+.   .   .   .   NAME-fmt..autotmp_1 Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:294:17,main.go:13:13
+.   .   AS2FUNC tc(1) # print.go:294:17,main.go:13:13
+.   .   AS2FUNC-Lhs
+.   .   .   NAME-fmt..autotmp_0 Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:294:17,main.go:13:13
+.   .   .   NAME-fmt..autotmp_1 Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:294:17,main.go:13:13
+.   .   AS2FUNC-Rhs
+.   .   .   CALLFUNC IsDDD STRUCT-(int, error) tc(1) # print.go:294:17,main.go:13:13
+.   .   .   .   NAME-fmt.Fprintln Class:PFUNC Offset:0 FUNC-func(io.Writer, ...any) (int, error) tc(1) # print.go:282:6
+.   .   .   CALLFUNC-Args
+.   .   .   .   CONVIFACE io.Writer tc(1) # print.go:294:17,main.go:13:13
+.   .   .   .   .   NAME-os.Stdout Class:PEXTERN Offset:0 PTR-*os.File tc(1) # file.go:67:2
+.   .   .   .   NAME-fmt.a Class:PAUTO Offset:0 InlFormal OnStack Used SLICE-[]any tc(1) # print.go:293:14,main.go:13:13
+.   .   BLOCK # main.go:13:13
+.   .   BLOCK-List
+.   .   .   AS2 tc(1) # main.go:13:13
+.   .   .   AS2-Lhs
+.   .   .   .   NAME-fmt.n Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:293:25,main.go:13:13
+.   .   .   .   NAME-fmt.err Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:293:32,main.go:13:13
+.   .   .   AS2-Rhs
+.   .   .   .   NAME-fmt..autotmp_0 Class:PAUTO Offset:0 InlLocal OnStack Used int tc(1) # print.go:294:17,main.go:13:13
+.   .   .   .   NAME-fmt..autotmp_1 Class:PAUTO Offset:0 InlLocal OnStack Used error tc(1) # print.go:294:17,main.go:13:13
+.   .   .   GOTO main..i0 tc(1) # main.go:13:13
+.   .   LABEL main..i0 # main.go:13:13
+.   INLCALL-ReturnVars
+.   .   NAME-fmt.n Class:PAUTO Offset:0 InlFormal OnStack Used int tc(1) # print.go:293:25,main.go:13:13
+.   .   NAME-fmt.err Class:PAUTO Offset:0 InlFormal OnStack Used error tc(1) # print.go:293:32,main.go:13:13
+
+.\main.go:10:4:[1] main stmt: i := 0
+.\main.go:10:2:[1] main stmt: var i int
+.\main.go:11:4:[1] main stmt: s := &Struct{...}
+.\main.go:11:2:[1] main stmt: var s *Struct
+.\main.go:13:13:[1] main stmt: (.fmt.n; fmt.err)
+.\main.go:13:13:[1] main stmt: fmt.a := ... argument
+.\main.go:13:13:[1] main stmt: var fmt.a []any
+.\main.go:13:13:[1] main stmt: var fmt.n int
+.\main.go:13:13:[1] main stmt: fmt.n = <nil>
+.\main.go:13:13:[1] main stmt: var fmt.err error
+.\main.go:13:13:[1] main stmt: fmt.err = <nil>
+.\main.go:13:13:[1] main stmt: <node inlmark>
+.\main.go:13:13:[1] main stmt: fmt..autotmp_0, fmt..autotmp_1 = fmt.Fprintln(io.Writer(os.Stdout), fmt.a...)
+.\main.go:13:13:[1] main stmt: var fmt..autotmp_0 int
+.\main.go:13:13:[1] main stmt: fmt..autotmp_0 = <nil>
+.\main.go:13:13:[1] main stmt: var fmt..autotmp_1 error
+.\main.go:13:13:[1] main stmt: fmt..autotmp_1 = <nil>
+.\main.go:13:13:[1] main stmt: fmt.n, fmt.err = fmt..autotmp_0, fmt..autotmp_1; goto .i0
+.\main.go:13:13:[1] main stmt: fmt.n, fmt.err = fmt..autotmp_0, fmt..autotmp_1
+.\main.go:13:13:[1] main stmt: goto .i0
+.\main.go:13:13:[1] main stmt: .i0:
+.\main.go:13:13:.i0:  non-looping label
+.\main.go:11:7: &Struct{...} escapes to heap:
+.\main.go:11:7:   flow: s = &{storage for &Struct{...}}:
+.\main.go:11:7:     from &Struct{...} (spill) at .\main.go:11:7
+.\main.go:11:7:     from s := &Struct{...} (assign) at .\main.go:11:4
+.\main.go:11:7:   flow: {storage for ... argument} = s:
+.\main.go:11:7:     from s (interface-converted) at .\main.go:13:13
+.\main.go:11:7:     from ... argument (slice-literal-element) at .\main.go:13:13
+.\main.go:11:7:   flow: fmt.a = &{storage for ... argument}:
+.\main.go:11:7:     from ... argument (spill) at .\main.go:13:13
+.\main.go:11:7:     from fmt.a := ... argument (assign-pair) at .\main.go:13:13
+.\main.go:11:7:   flow: {heap} = *fmt.a:
+.\main.go:11:7:     from fmt.Fprintln(io.Writer(os.Stdout), fmt.a...) (call parameter) at .\main.go:13:13
+.\main.go:13:13: i escapes to heap:
+.\main.go:13:13:   flow: {storage for ... argument} = &{storage for i}:
+.\main.go:13:13:     from i (spill) at .\main.go:13:13
+.\main.go:13:13:     from ... argument (slice-literal-element) at .\main.go:13:13
+.\main.go:13:13:   flow: fmt.a = &{storage for ... argument}:
+.\main.go:13:13:     from ... argument (spill) at .\main.go:13:13
+.\main.go:13:13:     from fmt.a := ... argument (assign-pair) at .\main.go:13:13
+.\main.go:13:13:   flow: {heap} = *fmt.a:
+.\main.go:13:13:     from fmt.Fprintln(io.Writer(os.Stdout), fmt.a...) (call parameter) at .\main.go:13:13
+.\main.go:11:7: &Struct{...} escapes to heap
+.\main.go:13:13: ... argument does not escape
+.\main.go:13:13: i escapes to heap

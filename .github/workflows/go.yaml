@@ -36,3 +36,19 @@ jobs:
         with:
           version: latest
           working-directory: ./lesson1/homework
+
+      - name: BuildLesson2
+        working-directory: ./lesson2/homework
+        run: go build -v ./...
+
+      - name: TestLesson2
+        working-directory: ./lesson2/homework
+        run: |
+          go get github.com/stretchr/testify/assert
+          go test -v ./...
+
+      - name: LintLesson2
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: latest
+          working-directory: ./lesson2/homework
