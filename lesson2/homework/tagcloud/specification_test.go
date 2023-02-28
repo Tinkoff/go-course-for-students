@@ -10,7 +10,7 @@ import (
 func TestEmptyTagCloud(t *testing.T) {
 	tc := tagcloud.New()
 	topN := tc.TopN(1000)
-	assert.Len(t, len(topN), 0, "empty tag cloud returned non-empty topN elements %v", topN)
+	assert.Len(t, topN, 0, "empty tag cloud returned non-empty topN elements %v", topN)
 }
 
 func TestTopNGreaterThanCloudSize(t *testing.T) {
@@ -19,7 +19,7 @@ func TestTopNGreaterThanCloudSize(t *testing.T) {
 
 	requestCount := 10
 	topN := tc.TopN(requestCount)
-	assert.Len(t, len(topN), 1, "TopN(%d) returned array with invalid size: %v", requestCount, topN)
+	assert.Len(t, topN, 1, "TopN(%d) returned array with invalid size: %v", requestCount, topN)
 }
 
 func TestHappyPath(t *testing.T) {
@@ -30,7 +30,7 @@ func TestHappyPath(t *testing.T) {
 	tc.AddTag("multiple-occurrence")
 
 	top := tc.TopN(1)
-	assert.Len(t, len(top), 1, "TopN(1) returned %d elements", len(top))
+	assert.Len(t, top, 1, "TopN(1) returned %d elements", len(top))
 
 	if assert.Equal(t, "multiple-occurrence", top[0].Tag) {
 		assert.Equal(t, 2, top[0].OccurrenceCount)
@@ -48,7 +48,7 @@ func TestTopN(t *testing.T) {
 
 	validateTopN := func(n int) {
 		topN := tc.TopN(n)
-		assert.Equal(t, n, len(topN))
+		assert.Len(t, topN, n)
 
 		for i, el := range topN {
 			value := size - i - 1
@@ -72,7 +72,7 @@ func TestTopNWithRepeatedOccurrence(t *testing.T) {
 
 	requestCount := 3
 	topN := tc.TopN(requestCount)
-	assert.Len(t, len(topN), requestCount)
+	assert.Len(t, topN, requestCount)
 
 	distinctMap := make(map[string]struct{})
 	for _, v := range topN {
@@ -80,5 +80,5 @@ func TestTopNWithRepeatedOccurrence(t *testing.T) {
 		distinctMap[v.Tag] = struct{}{}
 	}
 
-	assert.Len(t, len(distinctMap), requestCount, "TopN(%d) returned array with non-distinct tags: %v", requestCount, topN)
+	assert.Len(t, distinctMap, requestCount, "TopN(%d) returned array with non-distinct tags: %v", requestCount, topN)
 }
