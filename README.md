@@ -3,6 +3,7 @@
 Ваши домашние задания будут проверяться только при условии, если они сдаются в виде pr-а внутри приватного форка.
 
 ### Как сделать приватный форк
+
 1. Создайте голый клон репозитория
     ```bash
     git clone --bare git@github.com:Tinkoff/go-course-for-students.git
@@ -29,6 +30,9 @@
    ```bash
    git clone git@github.com:<your_username>/go-course-for-students.git
    ```
+
+6. Для того чтобы мы могли проверить ДЗ надо [предоставить доступ в репозиторий](https://docs.github.com/ru/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository)
+пользователю [GoCourseTeachers](https://github.com/GoCourseTeachers)
 
 
 ### Как подтянуть изменения в форк
