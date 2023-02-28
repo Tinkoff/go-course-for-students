@@ -13,7 +13,7 @@
    и назовите его go-course-for-students
 
 3. Зеркально отправьте свой голый клон в новый go-course-for-students репозиторий
-   > Замените `<your_username>` своим именем на Github в приведенном ниже URL-адресе.
+   > Замените `<your_username>` своим именем на Github в приведенном ниже URL-адресе
 
     ```bash
     cd go-course-for-students.git
