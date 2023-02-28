@@ -1,11 +1,16 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"lecture01_homework/fizzbuzz"
+	"os"
 )
 
 func main() {
-	// TODO тут напишите цикл с вызовом FizzBuzz
-	// fmt.Println(fizzbuzz.FizzBuzz(10))
+	w := bufio.NewWriter(os.Stdout)
+	defer w.Flush()
+	for i := 0; i <= 100; i++ {
+		fmt.Fprintln(w, fizzbuzz.FizzBuzz(i))
+	}
 }
