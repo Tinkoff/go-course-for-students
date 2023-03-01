@@ -43,3 +43,6 @@
 2. Если не настроен upstream, то сделайте ```git remote add upstream git@github.com:Tinkoff/go-course-for-students.git``` или ```git remote add upstream https://github.com/Tinkoff/go-course-for-students.git```
 3. Обновите upstream: ```git fetch upstream```
 4. Подтяните изменения из upstream и ребазируйтесь на них: ```git rebase upstream/main```
+
+
+test
