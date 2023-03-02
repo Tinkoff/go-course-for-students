@@ -1,8 +1,11 @@
 package tagcloud
 
+import "math"
+
 // TagCloud aggregates statistics about used tags
 type TagCloud struct {
-	// TODO: add fields if necessary
+	SortedTagStats []TagStat
+	TagId          map[string]int
 }
 
 // TagStat represents statistics regarding single tag
@@ -11,27 +14,45 @@ type TagStat struct {
 	OccurrenceCount int
 }
 
-// New should create a valid TagCloud instance
-// TODO: You decide whether this function should return a pointer or a value
-func New() TagCloud {
-	// TODO: Implement this
-	return TagCloud{}
+func New() *TagCloud {
+	return &TagCloud{
+		SortedTagStats: []TagStat{},
+		TagId:          map[string]int{},
+	}
 }
 
-// AddTag should add a tag to the cloud if it wasn't present and increase tag occurrence count
-// thread-safety is not needed
-// TODO: You decide whether receiver should be a pointer or a value
-func (TagCloud) AddTag(tag string) {
-	// TODO: Implement this
+func (tc *TagCloud) AddTag(tag string) {
+	if id, hasValue := tc.TagId[tag]; hasValue {
+		tc.SortedTagStats[id].OccurrenceCount++
+		cnt := tc.SortedTagStats[id].OccurrenceCount
+		isSwapped := false
+
+		for i := id - 1; i >= 0; i-- {
+			if tc.SortedTagStats[i].OccurrenceCount >= cnt {
+				newId := i + 1
+				tc.TagId[tag] = newId
+				tc.TagId[tc.SortedTagStats[newId].Tag] = id
+				a, b := tc.SortedTagStats[newId], tc.SortedTagStats[id]
+				b, a = a, b
+				tc.SortedTagStats[newId] = a
+				tc.SortedTagStats[id] = b
+				isSwapped = true
+				break
+			}
+		}
+		if !isSwapped {
+			a, b := tc.SortedTagStats[0], tc.SortedTagStats[id]
+			b, a = a, b
+			tc.SortedTagStats[0] = a
+			tc.SortedTagStats[id] = b
+		}
+	} else {
+		tc.TagId[tag] = len(tc.SortedTagStats)
+		tc.SortedTagStats = append(tc.SortedTagStats, TagStat{Tag: tag, OccurrenceCount: 1})
+	}
 }
 
-// TopN should return top N most frequent tags ordered in descending order by occurrence count
-// if there are multiple tags with the same occurrence count then the order is defined by implementation
-// if n is greater that TagCloud size then all elements should be returned
-// thread-safety is not needed
-// there are no restrictions on time complexity
-// TODO: You decide whether receiver should be a pointer or a value
-func (TagCloud) TopN(n int) []TagStat {
-	// TODO: Implement this
-	return nil
+func (tc *TagCloud) TopN(n int) []TagStat {
+	n = int(math.Min(float64(n), float64(len(tc.SortedTagStats))))
+	return tc.SortedTagStats[:n]
 }
