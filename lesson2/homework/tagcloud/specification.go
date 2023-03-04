@@ -51,5 +51,9 @@ func (d *TagCloud) AddTag(tag string) {
 // TODO: You decide whether receiver should be a pointer or a value
 func (d *TagCloud) TopN(n int) []TagStat {
 	// TODO: Implement this
-	return d.tagList[:int(math.Min(float64(n), float64(len(d.tagList))))]
+	size := int(math.Min(float64(n), float64(len(d.tagList))))
+	result := make([]TagStat, size)
+
+	copy(result, d.tagList[:size])
+	return result
 }
