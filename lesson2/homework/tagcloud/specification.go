@@ -1,10 +1,11 @@
 package tagcloud
 
-import "sort"
+import "math"
 
 // TagCloud aggregates statistics about used tags
 type TagCloud struct {
-	tagTable map[string]int
+	tagLink map[string]int
+	tagList []TagStat
 	// TODO: add fields if necessary
 }
 
@@ -19,7 +20,7 @@ type TagStat struct {
 func New() TagCloud {
 	// TODO: Implement this
 	d := new(TagCloud)
-	d.tagTable = make(map[string]int)
+	d.tagLink = make(map[string]int)
 	return *d
 }
 
@@ -28,7 +29,18 @@ func New() TagCloud {
 // TODO: You decide whether receiver should be a pointer or a value
 func (d *TagCloud) AddTag(tag string) {
 	// TODO: Implement this
-	d.tagTable[tag] += 1
+	id := d.tagLink[tag]
+	if len(d.tagList) == 0 || d.tagList[id].Tag != tag {
+		d.tagList = append(d.tagList, TagStat{tag, 1})
+		d.tagLink[tag] = len(d.tagList) - 1
+	} else {
+		d.tagList[id].OccurrenceCount += 1
+		if id > 0 && d.tagList[id-1].OccurrenceCount < d.tagList[id].OccurrenceCount {
+			d.tagLink[tag], d.tagLink[d.tagList[id-1].Tag] = d.tagLink[d.tagList[id-1].Tag], d.tagLink[tag]
+			d.tagList[id-1], d.tagList[id] = d.tagList[id], d.tagList[id-1]
+		}
+	}
+
 }
 
 // TopN should return top N most frequent tags ordered in descending order by occurrence count
@@ -39,16 +51,5 @@ func (d *TagCloud) AddTag(tag string) {
 // TODO: You decide whether receiver should be a pointer or a value
 func (d *TagCloud) TopN(n int) []TagStat {
 	// TODO: Implement this
-	topList := make([]TagStat, 0, len((*d).tagTable))
-
-	for key, val := range (*d).tagTable {
-		topList = append(topList, TagStat{key, val})
-	}
-	sort.Slice(topList, func(i, j int) bool {
-		return topList[i].OccurrenceCount > topList[j].OccurrenceCount
-	})
-	for len(topList) > n {
-		topList = topList[:len(topList)-1]
-	}
-	return topList
+	return d.tagList[:int(math.Min(float64(n), float64(len(d.tagList))))]
 }
