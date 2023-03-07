@@ -13,6 +13,12 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        work_dir:
+          - ./lesson1/homework
+          - ./lesson2/homework
+          - ./lesson3/hw_reference_solution
     steps:
       - uses: actions/checkout@v3
 
@@ -21,34 +27,18 @@ jobs:
         with:
           go-version: 1.19
 
-      - name: BuildLesson1
-        working-directory: ./lesson1/homework
+      - name: Build
+        working-directory: ${{ matrix.work_dir }}
         run: go build -v ./...
 
-      - name: TestLesson1
-        working-directory: ./lesson1/homework
+      - name: Test
+        working-directory: ${{ matrix.work_dir }}
         run: |
-          go get github.com/stretchr/testify/assert
+          go mod tidy
           go test -v ./...
 
-      - name: LintLesson1
+      - name: Lint
         uses: golangci/golangci-lint-action@v3
         with:
           version: latest
-          working-directory: ./lesson1/homework
-
-      - name: BuildLesson2
-        working-directory: ./lesson2/homework
-        run: go build -v ./...
-
-      - name: TestLesson2
-        working-directory: ./lesson2/homework
-        run: |
-          go get github.com/stretchr/testify/assert
-          go test -v ./...
-
-      - name: LintLesson2
-        uses: golangci/golangci-lint-action@v3
-        with:
-          version: latest
-          working-directory: ./lesson2/homework
+          working-directory: ${{ matrix.work_dir }}
