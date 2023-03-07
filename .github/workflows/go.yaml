@@ -18,7 +18,7 @@ jobs:
         work_dir:
           - ./lesson1/homework
           - ./lesson2/homework
-          - ./lesson3/hw_reference_solution
+          - ./lesson3/homework
     steps:
       - uses: actions/checkout@v3
 
