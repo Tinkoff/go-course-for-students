@@ -29,7 +29,9 @@ jobs:
 
       - name: Build
         working-directory: ${{ matrix.work_dir }}
-        run: go build -v ./...
+        run: |
+          go mod tidy
+          go build -v ./...
 
       - name: Lint
         uses: golangci/golangci-lint-action@v3
