@@ -5,8 +5,6 @@ name: 'Repo Lockdown'
 on:
   schedule:
     - cron: '0 23 * * 2'
-  push:
-    branches: [ "test123" ]
 
 permissions:
   pull-requests: write
