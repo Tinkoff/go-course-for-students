@@ -13,7 +13,9 @@ jobs:
   action:
     runs-on: ubuntu-latest
     steps:
-      - uses: dessant/repo-lockdown@v3
+      - name: CloseUnnecessaryPRs
+        if: github.repository_owner == 'Tinkoff'
+        uses: dessant/repo-lockdown@v3
         with:
           exclude-pr-labels: 'pinned'
           pr-comment: 'all homework is checked inside pull requests in your personal repositories!'
