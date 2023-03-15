@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: CloseUnnecessaryPRs
-        if: github.repository_owner != 'Tinkoff'
+        if: github.repository_owner == 'Tinkoff'
         uses: dessant/repo-lockdown@v3
         with:
           exclude-pr-labels: 'pinned'
