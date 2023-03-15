@@ -13,14 +13,10 @@ permissions:
 
 jobs:
   action:
-    #if: github.repository_owner
     runs-on: ubuntu-latest
     steps:
-      - name: Test2
-        run: |
-          echo ${{ github.repository_owner }}
-
-      - name: Test1
+      - name: CloseUnnecessaryPRs
+        if: github.repository_owner == 'Tinkoff'
         uses: dessant/repo-lockdown@v3
         with:
           exclude-pr-labels: 'pinned'
