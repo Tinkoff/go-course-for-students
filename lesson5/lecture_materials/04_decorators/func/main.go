@@ -18,7 +18,6 @@ func decorator(fn func(string)) func(string) {
 
 		fmt.Println("after func")
 	}
-
 }
 
 func main() {

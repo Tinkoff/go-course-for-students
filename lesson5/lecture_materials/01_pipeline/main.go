@@ -26,12 +26,12 @@ func sq(in <-chan int) <-chan int {
 
 func main() {
 	// Создаем
-	//c := gen(2, 3)
-	//out := sq(c)
+	// c := gen(2, 3)
+	// out := sq(c)
 
 	// Получаем результаты
-	//fmt.Println(<-out) // 4
-	//fmt.Println(<-out) // 9
+	// fmt.Println(<-out) // 4
+	// fmt.Println(<-out) // 9
 
 	for n := range sq(sq(gen(2, 3))) {
 		fmt.Println(n) // 16 then 81

@@ -27,7 +27,6 @@ func main() {
 	us = &timeitUserService{us}
 
 	fmt.Printf("User: %+v\n", us.FindUser(42))
-
 }
 
 type loggedUserService struct {

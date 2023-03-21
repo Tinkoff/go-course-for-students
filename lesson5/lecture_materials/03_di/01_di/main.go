@@ -23,7 +23,7 @@ func NewUserService(store Store) *UserService {
 }
 
 func main() {
-	//store := &sync.Map{}
+	// store := &sync.Map{}
 	cache := NewRedisCache("", "", 0)
 	_ = NewUserService(cache)
 }

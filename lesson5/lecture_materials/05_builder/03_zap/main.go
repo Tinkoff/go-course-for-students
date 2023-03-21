@@ -18,5 +18,4 @@ func main() {
 		WithOptions(zap.WithCaller(true)).
 		With(zap.String("key", "val")).
 		Error("hello! i'm error!")
-
 }
