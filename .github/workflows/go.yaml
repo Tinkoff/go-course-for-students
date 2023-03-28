@@ -14,6 +14,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         work_dir:
           - ./lesson1/homework
