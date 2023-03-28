@@ -1,0 +1,7 @@
+server:
+  host: 127.0.0.2
+  port: 1234
+  log_level: ${APP_LOG_LEVEL}
+  options:
+    - opt1
+    - opt2

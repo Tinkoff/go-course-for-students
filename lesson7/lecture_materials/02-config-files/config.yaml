@@ -1,0 +1,4 @@
+server:
+  host: 127.0.0.1
+  port: 1235
+  log_level: debug
