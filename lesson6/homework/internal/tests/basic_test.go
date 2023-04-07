@@ -26,10 +26,6 @@ type adResponse struct {
 	Data adData `json:"data"`
 }
 
-type adsResponse struct {
-	Data []adData `json:"data"`
-}
-
 var ErrBadRequest = fmt.Errorf("bad request")
 var ErrForbidden = fmt.Errorf("forbidden")
 
