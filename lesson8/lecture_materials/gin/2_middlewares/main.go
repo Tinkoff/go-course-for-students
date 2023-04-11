@@ -45,8 +45,8 @@ func GetUser(c *gin.Context) {
 	}
 
 	/*
-		exampleData, ok := c.GetString("example")
-		if !ok {
+		exampleData := c.GetString("example")
+		if exampleData == "" {
 			c.Status(http.StatusInternalServerError)
 			return
 		}
