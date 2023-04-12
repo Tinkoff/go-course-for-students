@@ -24,6 +24,7 @@ jobs:
           - ./lesson5/homework
           - ./lesson6/homework
           - ./lesson7/homework
+          - ./lesson8/homework
     steps:
       - uses: actions/checkout@v3
 
