@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package ad;
+option go_package = "lesson9/homework/internal/ports/grpc";
+import "google/protobuf/empty.proto";
+
+service AdService {
+  rpc CreateAd(CreateAdRequest) returns (AdResponse) {}
+  rpc ChangeAdStatus(ChangeAdStatusRequest) returns (AdResponse) {}
+  rpc UpdateAd(UpdateAdRequest) returns (AdResponse) {}
+  rpc ListAds(google.protobuf.Empty) returns (ListAdResponse) {}
+  rpc CreateUser(CreateUserRequest) returns (UserResponse) {}
+  rpc GetUser(GetUserRequest) returns (UserResponse) {}
+  rpc DeleteUser(DeleteUserRequest) returns (google.protobuf.Empty) {}
+  rpc DeleteAd(DeleteAdRequest) returns (google.protobuf.Empty) {}
+}
+
+message CreateAdRequest {
+  string title = 1;
+  string text = 2;
+  int64 user_id = 3;
+}
+
+message ChangeAdStatusRequest {
+  int64 ad_id = 1;
+  int64 user_id = 2;
+  bool published = 3;
+}
+
+message UpdateAdRequest {
+  int64 ad_id = 1;
+  string title = 2;
+  string text = 3;
+  int64 user_id = 4;
+}
+
+message AdResponse {
+  int64 id = 1;
+  string title = 2;
+  string text = 3;
+  int64 author_id = 4;
+  bool published = 5;
+}
+
+message ListAdResponse {
+  repeated AdResponse list = 1;
+}
+
+message CreateUserRequest {
+  string name = 1;
+}
+
+message UserResponse {
+  int64 id = 1;
+  string name = 2;
+}
+
+message GetUserRequest {
+  int64 id = 1;
+}
+
+message DeleteUserRequest {
+  int64 id = 1;
+}
+
+message DeleteAdRequest {
+  int64 ad_id = 1;
+  int64 author_id = 2;
+}

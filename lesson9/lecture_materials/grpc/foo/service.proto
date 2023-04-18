@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package foo;
+option go_package = "./foo";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+service PricesService {
+  rpc LastPrice(Instrument) returns (Price) {}
+  rpc GetPrices(stream Instrument) returns (Prices) {}
+  rpc PricesStream(Instrument) returns (stream Price) {}
+}
+
+enum InstrumentType {
+  Equity = 0;
+  Bond = 1;
+}
+
+message Instrument {
+  int64 id = 1;
+  string ticker = 2;
+  InstrumentType type = 3;
+}
+
+message Price {
+  int64 instrumentID = 1;
+  double value = 2;
+  google.protobuf.Timestamp ts = 3;
+}
+
+message Prices {
+  repeated Price prices = 1;
+}
+
+service ChatService {
+  rpc Chat(stream Message) returns (stream Message) {}
+}
+
+message Message {
+  string payload = 1;
+}
+
+
+
+service BarService {
+  rpc Bar(google.protobuf.Empty) returns (BarMessage);
+}
+
+message BarMessage {
+  oneof Data {
+    string id = 1;
+    double value = 2;
+  }
+}
