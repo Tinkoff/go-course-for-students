@@ -26,6 +26,7 @@ jobs:
           - ./lesson7/homework
           - ./lesson8/homework
           - ./lesson9/homework
+          - ./lesson10/homework
     steps:
       - uses: actions/checkout@v3
 
@@ -50,4 +51,4 @@ jobs:
         working-directory: ${{ matrix.work_dir }}
         run: |
           go mod tidy
-          go test -v -race ./...
+          go test -v -race -coverpkg=./... ./...
