@@ -2,8 +2,6 @@ package main
 
 import (
 	"context"
-	"net/http"
-	"time"
 
 	"github.com/Pallinder/go-randomdata"
 	"github.com/jackc/pgx/v5"
@@ -18,11 +16,6 @@ func main() {
 	logger.SetLevel(log.InfoLevel)
 	logger.SetFormatter(&log.TextFormatter{})
 
-	cl := http.Client{
-		Timeout: time.Saturday
-	}
-	http.NewRequestWithContext()
-	cl.Do()
 	conn, err := pgx.Connect(context.Background(), "postgres://postgres:postgres@localhost:5433/pg_course")
 	if err != nil {
 		logger.WithError(err).Fatalf("can't connect to pg")

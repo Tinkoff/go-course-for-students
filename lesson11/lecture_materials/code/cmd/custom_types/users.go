@@ -17,7 +17,7 @@ type User struct {
 	Birthday *Date
 }
 
-func (d *Date) Scan(value interface{}) error {
+func (d *Date) Scan(value any) error {
 	timeValue := value.(time.Time)
 	*d = Date(timeValue)
 
